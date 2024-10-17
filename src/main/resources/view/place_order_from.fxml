@@ -12,8 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="509.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.order.PlaceOrderFromController">
+<AnchorPane prefHeight="509.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.order.PlaceOrderFromController">
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#03294e" height="60.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="674.0" />
         <Label layoutX="235.0" layoutY="12.0" text="Place Order Form" textFill="WHITE">
@@ -24,11 +23,6 @@
         <Group layoutX="124.0" layoutY="78.0">
             <children>
                 <Label text="Order ID :">
-                    <font>
-                        <Font name="System Bold" size="15.0" />
-                    </font>
-                </Label>
-                <Label fx:id="lblOrderId" layoutX="75.0" layoutY="1.0" text="O001">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
@@ -55,6 +49,7 @@
                 </Label>
                 <Separator layoutX="131.0" orientation="VERTICAL" prefHeight="23.0" prefWidth="0.0" />
                 <Separator layoutX="300.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="23.0" prefWidth="0.0" />
+            <TextField fx:id="txtOrderID" layoutX="82.0" layoutY="-1.0" prefHeight="26.0" prefWidth="50.0" promptText="ID" />
             </children>
         </Group>
         <ComboBox fx:id="cmbCustomerId" layoutX="65.0" layoutY="125.0" prefWidth="150.0" promptText="Customer ID" />
