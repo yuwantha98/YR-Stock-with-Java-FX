@@ -16,6 +16,7 @@ import javafx.util.Duration;
 import model.*;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -140,7 +141,11 @@ public class PlaceOrderFromController implements Initializable {
 
         Order order = new Order(orderId, orderDate, customerId, orderDetails);
 
-        new OrderController().placeOrder(order);
+        try {
+            new OrderController().placeOrder(order);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         System.out.println(order);
     }
