@@ -43,7 +43,7 @@ public class CustomerFormController implements Initializable {
     @FXML
     private TableView<Customer> tblCustomers;
 
-    CustomerService service =new CustomerController();
+    CustomerService service = CustomerController.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -52,9 +52,9 @@ public class CustomerFormController implements Initializable {
 
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colDob.setCellValueFactory(new PropertyValueFactory<>("dob"));
         colSalary.setCellValueFactory(new PropertyValueFactory<>("salary"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colCity.setCellValueFactory(new PropertyValueFactory<>("city"));
         colProvince.setCellValueFactory(new PropertyValueFactory<>("province"));
         colPostalCode.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
@@ -86,10 +86,11 @@ public class CustomerFormController implements Initializable {
                 txtId.getText(),
                 cmbTitle.getValue().toString(),
                 txtName.getText(),
-                txtAddress.getText(),
                 dateDob.getValue(),
                 Double.parseDouble(txtSalary.getText()),
-                txtCity.getText(), txtProvince.getText(),
+                txtAddress.getText(),
+                txtCity.getText(),
+                txtProvince.getText(),
                 txtPostalCode.getText()
         );
         ;

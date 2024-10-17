@@ -1,5 +1,6 @@
 package controller.item;
 
+import controller.cusromer.CustomerController;
 import db.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +14,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ItemController implements ItemService {
+
+    private static ItemController instance;
+
+    private ItemController(){
+
+    }
+
+    public static ItemController getInstance() {
+        return instance==null?instance=new ItemController():instance;
+    }
+
     @Override
     public boolean addItem(Item item) {
         String SQl = "INSERT INTO Item VALUES(?,?,?,?,?)";
@@ -94,6 +106,43 @@ public class ItemController implements ItemService {
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    public Customer searchCustomer(String id) {
+        String SQL = "SELECT * FROM customer WHERE CustID=?";
+
+        try {
+            ResultSet resultSet = CrudUtil.execute(SQL, id);
+
+            if (resultSet.next()) { // Use `if` since there should be only one result for a unique ID
+                return new Customer(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getDate(4).toLocalDate(),
+                        resultSet.getDouble(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getString(8),
+                        resultSet.getString(9)
+                );
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null; // Return null only if no customer is found
+    }
+
+
+    @Override
+    public ObservableList<String> getItemIds(){
+        ObservableList<String> ItemIds = FXCollections.observableArrayList();
+        ObservableList<Item> itemObservableList = getAll();
+
+        itemObservableList.forEach(customer -> {
+            ItemIds.add(customer.getItemCode());
+        });
+        return ItemIds;
     }
 
 

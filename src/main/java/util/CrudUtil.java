@@ -7,10 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class CrudUtil {
+public class  CrudUtil {
     public static <T> T execute(String SQL, Object... val) throws SQLException {
-
-        //   new ArrayList<T>();  ==  <T>T
 
         PreparedStatement psTm = DBConnection.getInstance().getConnection().prepareStatement(SQL);
         for (int i = 0; i < val.length; i++) {
